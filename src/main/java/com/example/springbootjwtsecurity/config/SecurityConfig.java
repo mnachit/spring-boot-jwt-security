@@ -36,7 +36,8 @@ public class SecurityConfig  {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests()
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/auth/**")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -53,6 +54,4 @@ public class SecurityConfig  {
     public BCryptPasswordEncoder passwordEncoder1() {
         return new BCryptPasswordEncoder();
     }
-
-
 }
