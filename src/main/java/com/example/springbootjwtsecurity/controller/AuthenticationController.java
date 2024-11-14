@@ -23,7 +23,7 @@ public class AuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> register(@RequestBody RegisterUserDto registerUserDto) {
-        Response<String> userDtoResponseResponse = new Response<>();
+        Response<String> userDtoResponseResponse = new Response<String>();
         User user = userService.saveUser(registerUserDto);
         String token = jwtUtil.createToken(user);
         userDtoResponseResponse.setMessage("User has been added");
@@ -33,7 +33,7 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody LoginUserDto loginUserDto) {
-        Response<String> userDtoResponseResponse = new Response<>();
+        Response<String> userDtoResponseResponse = new Response<String>();
         User authenticatedUser = userService.login(loginUserDto);
         String jwtToken = jwtUtil.createToken(authenticatedUser);
         userDtoResponseResponse.setResult(jwtToken);
